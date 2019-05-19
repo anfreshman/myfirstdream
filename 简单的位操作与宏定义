@@ -1,0 +1,21 @@
+#include<stdio.h>
+#define left(a,n) a<<n//带参数的宏定义
+#define right(b,n) b>>n
+typedef struct
+{unsigned GetFlag:2;
+unsigned Receive:6;
+
+}data;
+
+
+
+int main()
+{data Data1;
+	int m;
+scanf("%d%d",&m,&Data1);
+m=left(m,4);
+printf("%o\n",m);
+printf("%d\n",Data1.GetFlag);
+
+return 0;
+}
