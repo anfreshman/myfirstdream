@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define LEN sizeof(link)
+typedef struct data//尝试在循环链表建立的数据
+{
+char m[10];
+struct data*next;
+
+}link;
+
+/*typedef struct newdata//多项式建立的数据
+{
+int exp;
+float coef;
+struct newdata*next;
+
+}lpolynomial;*/
+
+
+int main()
+{
+link* Circular();
+link*a;
+printf("请输入需要建立链表的数据\n");
+a=Circular();
+a=a->next;
+while(a->m[0]!='0')
+{printf("%s\n",a->m);
+a=a->next;}
+float a;
+
+
+return 0;}
+
+
+
+link* Circular()//建立循环链表
+{link*p1,*p2,*head;
+head=malloc(LEN);
+head->next=head;
+head->m[0]='1';
+p1=p2=malloc(LEN);
+while(p2->m[0]!='0')
+{
+	if(head->next==head)
+head->next=p1;                  
+scanf("%s",p1->m);
+p2=p1;
+p1=malloc(LEN);
+p2->next=p1;
+}
+p1->next=head;
+if((*(head->next)).m[0]=='0')
+return NULL;
+else
+return head;
+}
+
+
+
+float polynomial(void)
+{float sum;
+lpolynomial*p1,p2;
+
+	printf("请输入多项式\n格式如下");
+    printf("*************");
+	printf("例：\ncoef=\nexp=\n");
+scanf("coef=%f",&p1->coef);
+scanf("exp=%f",&p1->exp);
+
+
+return(sum);
+}
