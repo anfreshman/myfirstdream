@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h> 
+struct Identity
+{char name[30];
+char sex;
+int age;
+char work;
+union position//共用体，学生和老师不一样
+{char lposition;
+int class;
+};
+};//链表，共用体，结构体，枚举类型,定义新类型
+
+
+typedef enum Zimu{A,B,C,D}zimu;
+
+
+
+int main()
+{//void link();
+	//struct Identity s1;
+//struct Identity*p;
+//p=&s1;
+//printf("请输入数据\n");
+//scanf("%d",&p->age);
+//printf("%d",p->age);
+//link();
+
+
+	zimu a=A;
+printf("%d",a);
+return 0;
+}
+
+
+
+
+void link()
+{struct link1*p1;
+	struct link1
+{char Rname[50];
+struct link1*p;
+}a,b,c,d;
+
+p1=&a;
+a.p=&b;
+b.p=&c;
+c.p=&d;
+d.p=NULL;
+while(p1!=NULL)
+{
+scanf("%s",&p1->Rname);
+p1=(*p1).p;
+
+}
+for(p1=&a;p1!=NULL;p1=(*p1).p)
+printf("%s\n",(*p1).Rname);
+
+}
