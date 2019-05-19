@@ -1,3 +1,4 @@
+//两个数值相比较
 #include <stdio.h>
 int main ( )
 {int max(int a,int b);
@@ -11,5 +12,30 @@ int max(int x,int y)
 if(x>y)z=x;
 else z=y;
 return (z);}
+
+
+
+
+
+
+//三个数值相比较
+
+/*#include <stdio.h>
+int main()
+{int max(int x,int y,int z);//对最大值函数的定义
+int a,b,c,n;//对键入值的定义
+scanf("%d,%d,%d",&a,&b,&c);
+n=max(a,b,c);
+printf("最大值是%d\n",n);
+return 0;}
+int max(int x,int y,int z)
+{int m;
+if (x>y&&x>z)
+m=x;
+else if(y>x&&y>z)
+m=y;
+else if(z>x&&z>y)
+m=z;
+return (m);}*/
 
 
