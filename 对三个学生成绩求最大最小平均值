@@ -1,0 +1,64 @@
+#include<stdio.h>
+float d[3];
+int main()
+{
+int i;//5
+float*m1,*m2,*m3;
+void math(float x[],float*p1,float*p2,float*p3);
+printf("请输入三个学生的成绩\n");
+for(i=0;i<=2;i++)
+scanf ("%f",&d[i]);
+m1=&d[0];
+m2=&d[1];
+m3=&d[2];
+
+math(d,m1,m2,m3);//11
+printf("waiting please");
+printf("最大值是%f\n最小值是%f\n平均数是%f\n",*m1,*m2,*m3);
+return 0;
+}
+
+void math(float x[],float*p1,float*p2,float*p3)//15
+{float n1,n2,n3;
+float max (float e[],int q);
+float average (float z[]);
+float mini (float f[],int w);//20
+n1=max(x,3);
+n2=mini(x,3);
+n3=average(x);
+*p1=n1;
+*p2=n2;
+*p3=n3;
+}
+
+
+float max (float e[],int q)//
+{float i;
+int a;
+i=e[0];
+for(a=0;a<q;a++)
+{if(e[a]>i)
+i=e[a];}
+
+return(i);
+}
+
+float average (float z[])
+{int i;//
+float a,s;
+a=z[0];
+for(i=1;i<=2;i++)
+a=a+z[i];
+s=a/3;
+return(s);
+}
+
+float mini (float f[],int w)
+{float i;
+int a;
+i=f[0];
+for(a=0;a<w;a++)
+{if(f[a]<i)
+i=f[a];}
+return(i);//
+}
