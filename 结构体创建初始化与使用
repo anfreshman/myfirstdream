@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define apple sizeof(struct fate)
+int main()
+{
+void Dynamic();
+/*	struct fate
+{char name[20];
+char sex;
+int age;};
+struct fate person;
+scanf("%s,%c,%d",person.name[20],&person.sex,&person.age);//输入数据给结构体*/
+Dynamic();
+return 0;
+}
+
+void Dynamic()
+{
+
+	
+	typedef struct fate
+{int age;
+struct fate*p;}FATE;//自定义FATE作为结构体简称
+
+
+FATE*head,*a,*b,*p1;//定义指向每个节点的指针
+
+head=a=b=(struct fate*)malloc(apple);//开辟第一个位置
+
+scanf("%d",&(*head).age);//导入第一个数据
+
+
+if(head->age!=0)//第一次输入数据后的判断
+{
+
+	a=b=(struct fate*)malloc(apple);//开辟第二个位置
+	if(a==NULL)//判断开辟函数是否执行成功
+		printf("分配失败");
+	else
+	{		head->p=a;
+scanf("%d",&(*a).age);
+
+
+if(a->age!=0)
+{
+	b=(struct fate*)malloc(apple);
+if(b==NULL)
+		printf("分配失败");
+	else
+	{a->p=b;
+scanf("%d",&(*b).age);}
+}
+
+b->p=NULL;
+
+p1=head;
+
+while(p1!=NULL)
+{printf("%d\n",p1->age);
+p1=p1->p;
+
+}}}
+/*free(head);//释放内存
+free(a);
+free(b);*/
+}
