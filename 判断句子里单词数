@@ -1,0 +1,27 @@
+#include<stdio.h>
+int i,word;
+int main (void)
+{int num;
+char str1[81];
+int a (str1);
+num=1;
+puts("请输入字符");
+gets(str1);
+a (str1);
+for (i=0;str1[i]!='\0';i++)
+{a (str1);
+	if(word==0)
+{word=1;
+	num++;}}
+	printf ("单词数是%d\n",num);
+return 0;
+}
+
+int a (char x[])
+{
+if(x[i]==' ')
+word=0;
+else
+word=1;
+return (word);
+}
