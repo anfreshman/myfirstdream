@@ -1,0 +1,158 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define LEN sizeof(linklist)
+
+typedef struct node//结构体的定义
+{char name[20];
+int age;
+struct node*next;
+}linklist;
+int main()
+{linklist*x1,*x2,*x3;
+linklist*CreatlistR();//尾插法建表
+linklist*CreatlistF(int y);//头插法建表
+linklist*Insertafier(linklist*m1,linklist*m2,int x);//插入节点
+void Delete(linklist*m,int x);//删除（通过加减运算达到删除本个结点的操作）
+void Delete_2(linklist*m,int x);//通过交换前后顺序达到删除本个结点
+int a;
+
+x1=CreatlistR();
+printf("请输入需要插入的结点的顺序\n");
+scanf("%d",&a);
+x3=(linklist*)malloc(LEN);
+x2=(linklist*)malloc(LEN);
+printf("请输入需要插入的结点的数据\n");
+printf("请输入姓名:");
+scanf("%s",x3->name);
+
+x2=Insertafier(x1,x3,a);
+
+while(x2!=NULL)
+{printf("%s",x2->name);
+x2=x2->next;
+}
+
+return 0;
+}
+
+
+
+void Delete(linklist*m,int x)//链表数据的删除(通过对输入数字的操作达到删除本个数据)
+{int i=0;
+linklist*p1,*p2;
+if((x<=0)||(m==NULL))
+printf("!!!!!!!\n输入错误\n!!!!!!\n");
+else
+{p2=m;
+	while(i+1<x-1)
+{	
+	m=m->next;
+
+i++;}
+p1=m->next;
+m->next=p1->next;
+}
+m=p2;
+
+}
+
+
+
+
+linklist*CreatlistF(int y)//头插法建表
+{int i=0;
+	linklist*head,*p1;
+	head=(linklist*)malloc(LEN);
+printf("请输入姓名:");
+scanf("%s",head->name);
+printf("请输入年龄:");
+scanf("%d",&head->age);
+head->next=NULL;
+i++;
+while(i<y)
+{p1=(linklist*)malloc(LEN);
+	printf("请输入姓名:");
+scanf("%s",p1->name);
+printf("请输入年龄:");
+scanf("%d",&p1->age);
+p1->next=head;
+head=p1;
+i++;
+}
+return(head);
+}
+
+
+
+
+
+
+
+
+linklist*CreatlistR()//尾插法建表
+{
+	linklist*head,*p1,*r;
+head=r=NULL;
+p1=(linklist*)malloc(LEN);
+	printf("请输入姓名");
+scanf("%s",p1->name);
+//printf("请输入年龄");
+//scanf("%d",&p1->age);
+head=r=p1;
+while(r->name[0]!='0')//规定以0作为结束字符
+{
+p1=(linklist*)malloc(LEN);
+	printf("请输入姓名");
+scanf("%s",p1->name);
+//printf("请输入年龄");
+//scanf("%d",&p1->age);
+r->next=p1;
+r=p1;
+}
+r->next=NULL;
+return(head);
+}
+
+
+void Delete_2(linklist*m,int x)//通过交换前后位做到操作本个
+{int i,s;
+	linklist*p1;
+	if(m==NULL||x<=0)
+printf("!!!!!!!\n输入错误\n!!!!!!\n");
+else
+{for(i=0;i<x-1;i++)
+m=m->next;
+}
+p1=m->next;
+for(s=0;s<20;s++)//由于字符串长度不一，故用这种方法全部输入
+m->name[s]=p1->name[s];
+m->next=p1->next;
+free(p1);
+}
+
+
+linklist*Insertafier(linklist*m1,linklist*m2,int x)//在链表中插入结点
+{linklist*p1=(linklist*)malloc(LEN);
+int i=0,s;
+if(m1==NULL||x<=0)
+printf("!!!!!!!\n输入错误\n!!!!!!\n");
+else
+{if(m1->next==NULL)
+m1->next=m2;
+else
+{while(i<x)
+{m1=m1->next;
+i++;
+printf("!!!!!!!\n输入错误\n!!!!!!\n");}
+for(s=0;s<20;s++)
+p1->name[s]=m1->name[s];
+for(s=0;s<20;s++)
+m1->name[s]=m2->name[s];
+p1->next=m1->next;
+m1->next=p1;
+}
+
+}
+
+return(m1);
+}
