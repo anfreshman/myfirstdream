@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{FILE*fp1,*fp2;//文件
+char a,c[50];
+int b=0;
+	/*char filename[100],ch;*/
+/*void enumerate();
+struct gametype
+{char gamename[50];
+};*/
+//scanf("%s",filename);
+fp1=fopen("F:\\CS\\Text1.txt","rb+");
+fp2=fopen("F:\\CS\\Text2.txt","rb+");
+while(!feof(fp1))
+{a=fgetc(fp1);//读取之后
+putchar(a);
+}
+
+fseek(fp1,5,0);//把文件的光标任意移动
+fgets(c,15,fp1);//使用
+printf("%s",c);
+fputs(c,fp2);
+
+fprintf(fp2,"%s",c);
+/*enumerate();*/
+fclose(fp1);
+fclose(fp2);
+return 0;
+}
+
+
+/*void enumerate()//枚举类型的变量,枚举变量实际上就是一个整形变量，而非字符串
+{enum Identity {teacher='\n',student,pardents,friends};
+typedef enum Identity ID;
+//ID identity;
+printf("000");
+printf("%c",teacher);//可以给枚举变量赋字符,整数，但不能赋值字符串
+printf("000");
+
+}*/
