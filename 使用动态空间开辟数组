@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{int (*p)[4];//指向数组的指针
+int a[4]={2,3,6,5};//初始化a[4]
+int (*p2)=a;//一般这样初始化指向数组的指针
+p=(int(*)[4])calloc(4,50);//一般不如此用
+(*p)[3]=a[3];
+
+printf("%d\n",(*p)[3]);
+printf("%d",*(p2+2));
+
+}
