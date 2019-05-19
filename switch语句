@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main()
+{int pass(int a);	
+	int a,z;
+	printf ("请输入一个值\n");
+scanf ("%d",&a);
+z=pass(a);
+switch (z)
+{case 1:printf("这正是我们想要的\n");
+break;
+case 0:printf ("抱歉，这和我们的期待有差距\n");
+	break;
+}
+printf("感谢使用\n");
+return 0;}
+int pass(int x)
+{int m;
+	if(x>85) m=1;
+else m=0;
+return 0;
+}
