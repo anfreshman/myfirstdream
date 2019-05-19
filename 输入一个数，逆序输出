@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<math.h>
+int reverse(int x) {
+    int y,a,b,i,m,c[81],s;
+    a=0;
+    m=10;
+	c[0]=0;
+    s=abs(x);
+    if(s<10)
+        y=s;
+    else
+    {for(i=1;m>=10;i++)
+    m=(s/(10^i));
+    for(b=1;b<i;b++)
+    {c[b]=s%10^b;
+	s-=c[b-1]*10^(b-1);
+	a+=(c[b]*(10^(i-b+1)));}
+     y=a;
+}
+    if(x<=0)
+        s=-y;
+    else
+        s=y;
+    return(s);
+}
+
+int main()
+{int reverse(int x);
+int a;
+scanf("%d",&a);
+printf("%d",reverse(a));
+return 0;
+
+}
