@@ -30,6 +30,24 @@ return 0;
 }
 
 
+
+
+
+
+
+
+void flieread()
+{FILE*fp;
+char filename[20],a[500];
+scanf("%s",filename);
+fp=fopen(filename,"r");
+if(fp==NULL)
+printf("打开文件失败");
+else
+{fgets(a,500,fp);
+printf("%s",a);
+fclose(fp);}
+}
 /*void enumerate()//枚举类型的变量,枚举变量实际上就是一个整形变量，而非字符串
 {enum Identity {teacher='\n',student,pardents,friends};
 typedef enum Identity ID;
