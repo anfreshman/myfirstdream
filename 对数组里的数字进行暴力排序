@@ -1,0 +1,31 @@
+#include<stdio.h>//我想要输入十个数字然后让他们从大到小排列
+int main()
+{void num(int x[],int y);//十个数字的排列函数
+int*b,a,c[4];
+b=c;//把*b变成c[0]
+for(a=0;a<4;a++)//输入十个数字（以空格为间隔）
+scanf("%d",&b[a]);
+num(b,4);//把十个数字进行排序
+for(a=0;a<4;a++)//输出排序后的数列
+printf("%d ",b[a]);
+return 0;
+}
+
+
+
+
+void num(int x[],int y)
+{int c,d,e,g;
+for(c=0;c<y-1;c++)
+{d=c;
+	for(e=c+1;e<=y-1;e++)//把d[c]逐个跟后面的其他的数字比较
+{if(x[d]<x[e])
+d=e;}//找到最大的数
+   g=x[d];
+x[d]=x[c];
+x[c]=g;//交换对应的两个数字的位置
+
+}
+}
+
+
