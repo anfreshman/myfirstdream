@@ -1,0 +1,34 @@
+#include <stdio.h>
+int main()
+{float*p1,*p2,*p3;
+float a[3];
+int i;
+void sum(float m[],float*m1,float*m2,float*m3);
+printf("please enter your number");
+for(i=0;i<3;i++)
+scanf("%f",&a[i]);
+p1=&a[0];
+p2=&a[1];
+p3=&a[2];
+sum(a,p1,p2,p3);
+printf("%f\n%f\n%f",*p1,*p2,p3);
+return 0;
+}
+
+
+void sum(float m[],float*m1,float*m2,float*m3)
+{float i=0,w;
+int a;
+float s(float b);
+for(a=0;a<3;a++)
+i=i+m[a];
+w=s(i);
+*m1=i;
+*m2=w;
+}
+
+float s(float b)
+
+{float i;
+i=b/3;
+return i;}
