@@ -1,0 +1,44 @@
+public class qucikSort {
+    //分治法+递归调用
+    public int getIndex(int[] array,int low,int high){
+        int flag = array[low];
+        //单次遍历，先从后向前遍历找到第一个小于flag的值,此时array[low]的值已经被flag记录，所以里面可以随意填充新的元素
+       while(low < high){
+           for(;high>low;high--){
+               //判断条件不应该两边都有等号，否则会导致在同一循环中反复替换
+               if(array[high]<flag) {
+                   array[low] = array[high];
+                   break;
+               }
+           }
+           //再从前向后遍历，此时array[high]的内容已经被array[low]记录，所以可以随意填充
+           for(;low<high;low++){
+               if(array[low]>=flag){
+                   array[high] = array[low];
+                   break;
+               }
+           }
+       }
+    array[low] = flag;
+    return low;
+    }
+
+
+    public int[] sort(int[] array,int low,int high){
+        if(low < high){
+            low = getIndex(array,low,high);
+            sort(array,0,low);
+            sort(array,low+1,high);
+        }
+        return array;
+    }
+
+    public static void main(String[] args) {
+        int[] array = new int[]{1,36,24,55,189,12,45,695,54,42,458,26,10,1};
+        int[] sort = new 快排().sort(array, 0, array.length - 1);
+        for(int i = 0;i<array.length;i++){
+            System.out.println(sort[i]);
+        }
+
+    }
+}
