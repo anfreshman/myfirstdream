@@ -75,10 +75,46 @@ public class 二叉树 {
         visit(input.data);
     }
 
+    //后序遍历(非递归版)
+//    后序遍历的非递归就是最后一次接触到某一个元素的时候再访问它
+//    所以对于任意一个节点，首先访问它的左子树，并压入栈，直到到达当前最左端，然后以相同方式访问其右子树的左子树，直到为null
+//    最后到达的节点才是可以访问的节点，对于上一层的节点，只有从右子树返回时才可以访问
+//    所以设置pre指向上一次访问到节点，访问节点前不能弹栈，所以去处元素后需要再压回去，访问节点时才可以弹栈，并标记指针为null
+//    二叉树的后序非递归遍历有一条特性，访问某一节点时，当前栈内的节点就是其到根节点的一条路径，该特性可用来解决最短公共双亲等问题
+    public static void afterOrderNoRe(binaryTree input){
+        binaryTree temp = input;
+        binaryTree pre = null;
+        while(temp != null || !stack.isEmpty()){
+//            当左节点存在时，遍历访问到最左下的节点
+            if(temp != null){
+                stack.push(temp);
+                temp = temp.left;
+            }else{
+//                得到栈顶节点
+                temp = stack.pop();
+                stack.push(temp);
+                //当左节点不存在时，尝试访问右节点
+                if(temp.right != null && pre != temp.right){
+//                    右节点存在且未被访问过，则进行压栈
+                    temp = temp.right;
+                    stack.push(temp);
+                    temp = temp.left;
+                }else{
+//                    弹栈并访问该节点
+                    stack.pop();
+                    visit(temp.data);
+//                  记录此次访问的节点
+                    pre = temp;
+                    temp = null;
+                }
+            }
+        }
+    }
+
     //测试方法(主方法)
     public static void main(String[] args) {
         binaryTree head = binaryTree.getBanlanceTree();
-        preOrderNoRe(head);
+        afterOrderNoRe(head);
     }
 
 }
@@ -117,8 +153,12 @@ class binaryTree{
         root.left.data = 2;
         root.left.left = new binaryTree();
         root.left.left.data = 4;
+        root.left.right = new binaryTree();
+        root.left.right.data = 6;
         root.right = new binaryTree();
         root.right.data = 3;
+        root.right.left = new binaryTree();
+        root.right.left.data = 7;
         root.right.right = new binaryTree();
         root.right.right.data = 5;
         return root;
