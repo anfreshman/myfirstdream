@@ -1,5 +1,3 @@
-package 蓝桥杯.输入输出训练;
-
 import java.util.Scanner;
 
 /**
