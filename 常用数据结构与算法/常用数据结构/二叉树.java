@@ -1,5 +1,3 @@
-package 常见数据结构;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,10 +109,31 @@ public class 二叉树 {
         }
     }
 
+//    深度优先遍历
+//    深度优先遍历的规则:先遍历最左端的子树，然后逐层上升，遍历右子树
+//    深度优先遍历需要借助栈实现
+    public static  void dfs(binaryTree input){
+        binaryTree temp = input;
+//      将根节点入栈
+        stack.push(temp);
+        while(temp != null&!stack.isEmpty()){
+            temp = stack.pop();
+            visit(temp.data);
+//            如果它有右子树，将右子树先入栈(后访问)
+            if(temp.right != null){
+                stack.push(temp.right);
+            }
+//            将temp指向它的左子树
+            if(temp.left != null){
+                stack.push(temp.left);
+            }
+        }
+    }
+
     //测试方法(主方法)
     public static void main(String[] args) {
         binaryTree head = binaryTree.getBanlanceTree();
-        afterOrderNoRe(head);
+        dfs(head);
     }
 
 }
