@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * @description:二叉树是一种特殊的树状结构，也是最常用的树状结构，它有五种遍历方式，且其中三种又可以分为递归形式和非递归形式
  *  非递归的核心思想就是使用栈进行递归下降，把原本JVM做的事进行手动模拟
  */
-public class 二叉树 {
+public class BinaryTree {
 
 
     //访问某节点
@@ -111,7 +112,7 @@ public class 二叉树 {
 
 //    深度优先遍历
 //    深度优先遍历的规则:先遍历最左端的子树，然后逐层上升，遍历右子树
-//    深度优先遍历需要借助栈实现
+//    深度优先遍历（栈实现）
     public static  void dfs(binaryTree input){
         binaryTree temp = input;
 //      将根节点入栈
@@ -130,12 +131,47 @@ public class 二叉树 {
         }
     }
 
+//    深度优先遍历(递归法)
+    public static void dfs2(binaryTree input){
+        if(input != null){
+            visit(input.data);
+        }
+        if(input.left != null){
+            dfs2(input.left);
+        }
+        if(input.right != null){
+            dfs2(input.right);
+        }
+    }
+
+//    广度优先遍历，广度优先遍历就是逐层遍历，需要用到辅助数据结构队列
+//    具体思路为：对于一个节点，先入队，若有左孩子，入队，有有孩子，入队，访问该节点。a
+//    广度优先遍历(循环法)，核心在于使用一个中间指针与队列进行遍历，广度优先遍历没有递归法
+    static Queue queue = new Queue();
+    public static void bfs(binaryTree input){
+//        根节点入队
+        binaryTree temp = input;
+        queue.push(temp);
+        while(temp != null || !queue.isEmpty()){
+            temp = queue.pop();
+            if(temp.left != null){
+                queue.push(temp.left);
+            }
+            if(temp.right!=null){
+                queue.push(temp.right);
+            }
+            visit(temp.data);
+            temp = null;
+        }
+    }
+
+
+
     //测试方法(主方法)
     public static void main(String[] args) {
         binaryTree head = binaryTree.getBanlanceTree();
         dfs(head);
     }
-
 }
 
 
@@ -184,6 +220,7 @@ class binaryTree{
     }
 }
 
+//遍历所用的辅助数据类型-栈
 class Stack{
     List<binaryTree> stack = new ArrayList<>();
     public void push(binaryTree input){
@@ -199,5 +236,35 @@ class Stack{
             return true;
         }
         return false;
+    }
+}
+
+
+
+/*
+ * 遍历所用的辅助数据类型，队列
+ * 队列的特点：从一端插入，从另一端输出，而且先入先输出，后入后输出
+ */
+class Queue{
+    List<binaryTree> queue = new ArrayList<>();
+
+//    判断是否为空
+    public boolean isEmpty(){
+        if(queue.size() == 0){
+            return true;
+        }
+        return false;
+    }
+
+//    入队
+    public void push(binaryTree input){
+        queue.add(input);
+    }
+
+//    出队
+    public binaryTree pop(){
+        binaryTree out = queue.get(0);
+        queue.remove(0);
+        return out;
     }
 }
