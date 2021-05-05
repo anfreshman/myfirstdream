@@ -3,6 +3,7 @@
  * @author: 303014439
  * @date: 2021/5/4 21:18
  * @description:给定一个二叉树，返回其最大路径和的结果
+ * 思路：分治法，分别判断两个子树的路径长度
  */
 public class 二叉树最大路径和 {
     public static int getMaxPath(binaryTree input){
