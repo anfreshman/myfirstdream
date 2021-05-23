@@ -10,46 +10,35 @@ package 常见数据结构.链表;
  * 但是在链表移动的过程中，链表头发生了变化，使得链表实际开头地址和保留的副本中的开头地址不再相同，这时候也许需要特殊处理保证副本的正确性
  */
 public class 分隔链表 {
-    public static SimpleList divideList(SimpleList input,int m){
-//        设置一个头结点，指向大于x的部分的链表的头部，这里指向的input目前所指地点的引用，而不是input本身
-        SimpleList head = input;
-        SimpleList temp = new SimpleList();
-        SimpleList pre = null;
-        SimpleList rhead = temp;
-//        对输入链表中的所有节点进行循环
-//        可能出现的结果如下：
-//            1.遇到一个节点，大于m，保留
-//            2.遇到一个节点，小于m，且不为头结点，删除，即令其前驱指针的后继指向该节点的后继。同时将其添加到新的链表中
-//            3.遇到一个节点，小于m，且为头结点，删除，即令头指针指向其头指针的后继
-        for(;input != null;input = input.next){
-            if(input.data < m ){
-//                在新链表中添加该节点
-                temp.data = input.data;
-//                在原链表中删除该节点
-//                判断是不是头结点被删除，若是，则将头结点后移
-                if(head == input){
-                    head = head.next;
-                    pre = null;
-                }else
-                    pre.next = input.next;
-//                提前判断退出条件
-                if(input.next != null){
-                    temp.next = new SimpleList();
-                    temp = temp.next;
-                }
-            }
-            pre = input;
+    public static SimpleList divideList(SimpleList input,int m) {
+        if (input == null){
+            return null;
         }
-//        合并两链表
-        rhead.next = head;
-        return rhead;
+//      创建三个链表，将小于m的所有元素移动到一个新的链表，等于m的元素移动到一个链表，大于m的元素停留在原链表，最后链接三个链表
+        SimpleList pre = new SimpleList();
+        SimpleList rhead = pre;
+        SimpleList ltemp = new SimpleList();
+        SimpleList lhead = ltemp;
+//        SimpleList mtemp = new SimpleList();
+//        SimpleList mhead = new SimpleList();
+        pre.next = input;
+//        由于有链表的元素删除操作，所以为了防止空指针异常，这里进行短路与的判断
+        for(;pre!=null&&pre.next != null;){
+            if(pre.next.data < m){
+//                这里直接将元素赋值给新的链表的next，因为下一个next或最后的rhead会覆盖原有的next，所以这里不用做特殊处理
+                ltemp.next = pre.next;
+                pre.next = pre.next.next;
+                ltemp = ltemp.next;
+            }else pre = pre.next;
+        }
+//        连接链表，第一个的末尾的next指向第二个的开头
+        ltemp.next = rhead.next;
+        return lhead.next;
     }
-
-
     public static void main(String[] args) {
         int[] data = new int[]{5,4,3,2,1};
         SimpleList input = SimpleList.getList(data);
-        SimpleList simpleList = divideList(input, 3);
+        SimpleList simpleList = divideList(input, 5);
         while(simpleList != null){
             System.out.println(simpleList.data);
             simpleList = simpleList.next;
