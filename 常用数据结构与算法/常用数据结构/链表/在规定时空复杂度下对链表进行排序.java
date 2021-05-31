@@ -23,9 +23,23 @@ public class 在规定时空复杂度下对链表进行排序 {
             i++;
         }
 //        对每个元素进行归并排序
+
     }
 
-    public int[] megerSort(int[] input){
+/*   归并排序的具体实现思路：
+ *      一个sort方法，sort方法内部反复调用自身，将数组前后两部分都排序，最后调用meger()方法进行拼接
+ *
+ */
+    public void sort(int[] input , int start,int end){
+        int mid = (start + end)/2;
+        if(start != end){
+            sort(input,start,mid);
+            sort(input,mid,end);
+            meger(input,start,mid,end);
+        }
+    }
+
+    public int[] meger(int[] input,int start,int mid,int end){
 
         return null;
     }
