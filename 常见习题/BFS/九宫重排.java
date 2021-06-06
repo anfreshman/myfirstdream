@@ -13,7 +13,7 @@ import java.util.*;
 
 
  BFS，分别记录一步，两步...n步可以到达的所有状态，排除剩余状态，若某种状态不发产生新的状态了，则跳出
- 这样有一个问题，就是非常消耗时间，因为九宫格的可能情况很多，时间复杂度极高，需要剪枝优化
+ 这样有一个问题，就是非常消耗时间，因为九宫格的可能情况很多，时间复杂度极高，需要双向BFS优化，这里是未优化版本
  */
 public class 九宫重排 {
     public static void main(String[] args) {
@@ -34,17 +34,20 @@ public class 九宫重排 {
 //            记录空白格地点
             int add = 0;
             for(int i = 0; i<stute.length;i++){
-                if(stute[i] == '.') add = i;
-                break;
+                if(stute[i] == '.')
+                {add = i;
+                break;}
             }
-            System.out.println(map.size());
-            System.out.println(queue.data.size());
-            System.out.println(Arrays.toString(stute));
+//            System.out.println(map.size());
+//            System.out.println(queue.data.size());
+//            System.out.println(Arrays.toString(stute));
 //            判断当前是否为最终结果
             if(Arrays.equals(stute,end)){
                 out = map.get(stute);
+//                System.out.println("已得到");
                 break;
             }
+//            System.out.println("比对失败");
             char[] temp;
 //            确定可移动方位，增加到集合中
             if(add-1 >= 0){
